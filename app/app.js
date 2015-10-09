@@ -3,7 +3,8 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.home',
-  'firebase'
+  'firebase',
+  'myApp.register'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({
