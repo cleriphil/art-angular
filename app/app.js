@@ -2,13 +2,13 @@
 
 angular.module('myApp', [
   'ngRoute',
-  'myApp.home',
+  'myApp.login',
   'myApp.register',
   'myApp.welcome',
   'firebase'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({
-       redirectTo: '/home'
+       redirectTo: '/login'
    });
  }]);

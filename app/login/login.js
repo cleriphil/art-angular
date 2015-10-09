@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('myApp.home', ['ngRoute', 'firebase'])
+angular.module('myApp.login', ['ngRoute', 'firebase'])
 
 // Declared route
 .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/home', {
-        templateUrl: 'home/home.html',
-        controller: 'HomeCtrl'
+    $routeProvider.when('/login', {
+        templateUrl: 'login/login.html',
+        controller: 'LoginCtrl'
     });
 }])
 
-.controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
+.controller('LoginCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
     $scope.SignIn = function(event) {
     event.preventDefault();  // To prevent form refresh
     var username = $scope.user.email;
