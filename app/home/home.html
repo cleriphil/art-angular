@@ -20,13 +20,23 @@
     <div class="jumbotron" style="padding-bottom:0px;">
         <h2>AngularJS & Firebase App!</h2>
     </div>
-    <form class="form-signin" role="form">
-        <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-        <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
+
+
+
+    <form class="form-signin" name="signinForm" role="form">
+      <div class="form-group" ng-class="{ 'has-error' : signinForm.email.$invalid }">
+
+        <input ng-model="user.email" type="email" name="email" class="form-control" placeholder="Email address" >
+        <p class="help-block" ng-show="signinForm.email.$invalid">Enter a valid email.</p>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' : signinForm.password.$invalid }">
+        <input ng-model="user.password" ng-minlength="8" type="password" name="password" class="form-control" placeholder="Password" >
+        <p class="help-block" ng-show="signinForm.password.$error.minlength">Min password length is 8 characters.</p>
+      </div>
         <label class="checkbox">
             <a href="#/register"> Sign Up<a/>
         </label>
-        <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
+        <button  ng-disabled="!user.email || !user.password" type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
     </form>
 
   </div>
