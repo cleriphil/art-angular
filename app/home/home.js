@@ -10,9 +10,8 @@ angular.module('myApp.home', ['ngRoute', 'firebase'])
     });
 }])
 
-// Home controller
-.controller('HomeCtrl', ['$scope','$firebaseAuth',function($scope, $firebaseAuth) {
-  $scope.SignIn = function(event) {
+.controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
+    $scope.SignIn = function(event) {
     event.preventDefault();  // To prevent form refresh
     var username = $scope.user.email;
     var password = $scope.user.password;
@@ -23,6 +22,8 @@ angular.module('myApp.home', ['ngRoute', 'firebase'])
         .then(function(user) {
             //Success callback
             console.log('Authentication successful');
+            CommonProp.setUser(user.password.email);
+            $location.path('/welcome');
         }, function(error) {
             //Failure callback
             console.log('Authentication failure');
@@ -30,4 +31,17 @@ angular.module('myApp.home', ['ngRoute', 'firebase'])
   }
   var firebaseObj = new Firebase("https://art-app.firebaseio.com");
   var loginObj = $firebaseAuth(firebaseObj);
-}]);
+}])
+
+.service('CommonProp', function() {
+    var user = '';
+
+    return {
+        getUser: function() {
+            return user;
+        },
+        setUser: function(value) {
+            user = value;
+        }
+    };
+});
