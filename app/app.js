@@ -5,5 +5,9 @@ angular.module('myApp', [
   'myApp.login',
   'myApp.register',
   'myApp.welcome',
+  'myApp.addAuction',
   'firebase'
 ]);
+
+
+// add otherwise route?
