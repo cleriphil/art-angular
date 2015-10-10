@@ -26,6 +26,14 @@ angular.module('myApp.addAuction', ['ui.router', 'firebase'])
       description: description,
       startDate: startDate,
       endDate: endDate
-    })
+    },
+    function(error) {
+      if (error) {
+        console.log("Error:", error);
+      } else {
+        console.log("Post set successfully!");
+      }
+  });
+
   }
 }]);
