@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('myApp', [
-  'ngRoute',
-  'myApp.home',
+  'ui.router',
+  'myApp.login',
   'myApp.register',
   'myApp.welcome',
+  'myApp.addAuction',
   'firebase'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({
-       redirectTo: '/home'
-   });
- }]);
+]);
+
+
+// add otherwise route?
