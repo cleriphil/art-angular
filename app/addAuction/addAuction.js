@@ -17,6 +17,8 @@ angular.module('myApp.addAuction', ['ui.router', 'firebase'])
     var description = $scope.auction.description;
     var startDate = $scope.auction.startDate.toString();
     var endDate = $scope.auction.endDate.toString();
+    var emailId = CommonProp.getUser();
+
 
     var ref = new Firebase("https://art-app.firebaseio.com");
     var auctionsRef = ref.child("auctions");
@@ -26,7 +28,7 @@ angular.module('myApp.addAuction', ['ui.router', 'firebase'])
       description: description,
       startDate: startDate,
       endDate: endDate,
-      emailId: CommonProp.getUser()
+      emailId: emailId
     },
     function(error) {
       if (error) {
@@ -34,7 +36,7 @@ angular.module('myApp.addAuction', ['ui.router', 'firebase'])
       } else {
         console.log("Post set successfully!");
       }
-  });
+    });
 
   }
 }]);
