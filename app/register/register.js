@@ -1,14 +1,15 @@
 'use strict';
 
-angular.module('myApp.register', ['ngRoute','firebase'])
+angular.module('myApp.register', ['ui.router','firebase'])
 
 // Declared route
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/register', {
-        templateUrl: 'register/register.html',
-        controller: 'RegisterCtrl'
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider.state('register', {
+    url: "/register",
+    templateUrl: "register/register.html",
+    controller: 'RegisterCtrl'
     });
-}])
+})
 
 // Register controller
 .controller('RegisterCtrl', ['$scope','$location','$firebaseAuth', function($scope,$location,$firebaseAuth) {

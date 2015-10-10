@@ -1,14 +1,15 @@
 'use strict';
 
-angular.module('myApp.login', ['ngRoute', 'firebase'])
+angular.module('myApp.login', ['ui.router', 'firebase'])
 
 // Declared route
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/login', {
-        templateUrl: 'login/login.html',
-        controller: 'LoginCtrl'
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider.state('login', {
+    url: "/login",
+    templateUrl: "login/login.html",
+    controller: 'LoginCtrl'
     });
-}])
+})
 
 .controller('LoginCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
     $scope.SignIn = function(event) {

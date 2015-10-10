@@ -1,13 +1,14 @@
 'use strict';
 
-angular.module('myApp.welcome', ['ngRoute'])
+angular.module('myApp.welcome', ['ui.router'])
 
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/welcome', {
-        templateUrl: 'welcome/welcome.html',
-        controller: 'WelcomeCtrl'
-    });
-}])
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider.state('welcome', {
+    url: "/welcome",
+    templateUrl: 'welcome/welcome.html',
+    controller: 'WelcomeCtrl'
+  });
+})
 
 .controller('WelcomeCtrl', ['$scope','CommonProp', function($scope,CommonProp) {
   $scope.username = CommonProp.getUser();

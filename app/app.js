@@ -1,14 +1,9 @@
 'use strict';
 
 angular.module('myApp', [
-  'ngRoute',
+  'ui.router',
   'myApp.login',
   'myApp.register',
   'myApp.welcome',
   'firebase'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({
-       redirectTo: '/login'
-   });
- }]);
+]);
