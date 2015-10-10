@@ -13,7 +13,21 @@ angular.module('myApp.welcome', ['ui.router', 'firebase'])
 .controller('WelcomeCtrl', ['$scope','CommonProp', '$firebaseArray', '$firebaseObject', function($scope, CommonProp, $firebaseArray, $firebaseObject ) {
   $scope.username = CommonProp.getUser();
   var ref = new Firebase("https://art-app.firebaseio.com/auctions");
-  $scope.auctions = $firebaseArray(ref);
+  var auctionsRef= $firebaseArray(ref);
+  //
+  //
+  //
+  // for (var i=0; i< auctionsRef.length; i++) {
+  //   console.log('before', auctionsRef[i].endDate );
+  //   auctionsRef[i].startDate = new Date(auctionsRef[i].startDate);
+  //   auctionsRef[i].endDate = new Date(auctionsRef[i].endDate);
+  //   console.log('after', auctionsRef[i].endDate );
+  // }
+  //
+  // $scope.auctions = auctionsRef;
+  $scope.auctions = auctionsRef;
+  // console.log('$scope.auctions', $scope.auctions);
+
 
   $scope.editAuction = function(id) {
     var ref = new Firebase("https://art-app.firebaseio.com/auctions/" + id);
@@ -24,7 +38,7 @@ angular.module('myApp.welcome', ['ui.router', 'firebase'])
   $scope.update = function() {
     console.log($scope.auctionToUpdate.$id);
     var currentAuction = new Firebase("https://art-app.firebaseio.com/auctions/" + $scope.auctionToUpdate.$id);
-    var article = $firebaseObject(currentAuction);
+    var auction = $firebaseObject(currentAuction);
 
     var startDate = $scope.auctionToUpdate.startDate.toString();
     var startDate = new Date(startDate);

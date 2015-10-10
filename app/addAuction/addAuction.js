@@ -10,7 +10,7 @@ angular.module('myApp.addAuction', ['ui.router', 'firebase'])
     });
 })
 
-.controller('AddAuctionCtrl', ['$scope', '$firebaseObject', 'CommonProp', function($scope, $firebaseObject, CommonProp) {
+.controller('AddAuctionCtrl', ['$scope', '$state', '$firebaseObject', 'CommonProp', function($scope, $state, $firebaseObject, CommonProp) {
   $scope.addAuction = function() {
 
     var title = $scope.auction.title;
@@ -34,7 +34,8 @@ angular.module('myApp.addAuction', ['ui.router', 'firebase'])
       if (error) {
         console.log("Error:", error);
       } else {
-        console.log("Post set successfully!");
+        $state.go('welcome');
+        console.log("Auction set successfully!");
       }
     });
 
