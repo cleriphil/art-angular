@@ -9,9 +9,6 @@
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
-
-    <link href="justified-nav.css" rel="stylesheet">
-
 </head>
 
 <body ng-controller="LoginCtrl">
@@ -36,7 +33,7 @@
         <label class="checkbox">
             <a ui-sref="register"> Sign Up<a/>
         </label>
-        <button  ng-disabled="!user.email || !user.password" type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
+        <button ladda-loading="login.loading" data-style="expand-right" ng-disabled="!user.email || !user.password" type="button" ng-click="SignIn($event)" class="btn btn-lg segoe-ui-light ladda-button btn-primary btn-block"><span class="ladda-label">Sign In</span></button>
     </form>
 
   </div>
