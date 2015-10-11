@@ -11,7 +11,7 @@ angular.module('myApp.login', ['ui.router', 'firebase'])
     });
 })
 
-.controller('LoginCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
+.controller('LoginCtrl', ['$scope','$state','CommonProp','$firebaseAuth',function($scope,$state,CommonProp,$firebaseAuth) {
     $scope.SignIn = function(event) {
       event.preventDefault();  // To prevent form refresh
       login.loading = true;
@@ -26,7 +26,7 @@ angular.module('myApp.login', ['ui.router', 'firebase'])
       console.log('Authentication successful');
       login.loading = false;
       CommonProp.setUser(user.password.email);
-      $location.path('/welcome');
+      $state.go('welcome');
     }, function(error) {
       //Failure callback
       login.loading = false;
@@ -36,22 +36,44 @@ angular.module('myApp.login', ['ui.router', 'firebase'])
   var firebaseObj = new Firebase("https://art-app.firebaseio.com");
   var loginObj = $firebaseAuth(firebaseObj);
 
+  loginObj.$onAuth(function(authData) {
+      if(authData){
+          CommonProp.setUser(authData.password.email);
+          $state.go('welcome');
+      }
+   });
+
   var login = {};
   $scope.login = login;
 }])
 
-.service('CommonProp', function() {
+.service('CommonProp', ['$state', '$firebaseAuth', function($state, $firebaseAuth) {
   var user = '';
+
+  var firebaseObj = new Firebase("https://art-app.firebaseio.com");
+  var loginObj = $firebaseAuth(firebaseObj);
 
   return {
     getUser: function() {
+      if(user == ''){
+          user = localStorage.getItem('userEmail');
+      }
       return user;
     },
     setUser: function(value) {
+      localStorage.setItem("userEmail", value);
       user = value;
+    },
+    logoutUser:function(){
+      loginObj.$unauth();
+      user='';
+      localStorage.removeItem('userEmail');
+      $state.go('login');
     }
   };
-})
+
+
+}])
 
 .directive('laddaLoading', [
   function() {

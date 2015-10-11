@@ -19,25 +19,30 @@ angular.module('myApp.register', ['ui.router','firebase'])
    $scope.login=login;
   $scope.signUp = function() {
     if (!$scope.regForm.$invalid) {
-        login.loading = true;
-         var email = $scope.user.email;
-         var password = $scope.user.password;
-         if (email && password) {
-             auth.$createUser({
-               email: email,
-               password: password
-             })
-                 .then(function() {
-                    console.log('User creation success');
-                    login.loading  = false;
-                    $location.path('/login');
-                 }, function(error) {
-                     console.log(error);
-                    login.loading  = false;
-                     $scope.regError = true;
-                     $scope.regErrorMessage = error.message;
-                 });
-         }
+      login.loading = true;
+       var email = $scope.user.email;
+       var password = $scope.user.password;
+       if (email && password) {
+         auth.$createUser({
+           email: email,
+           password: password
+         })
+         .then(function() {
+            console.log('User creation success');
+            login.loading  = false;
+            $location.path('/login');
+         }, function(error) {
+             console.log(error);
+            login.loading  = false;
+             $scope.regError = true;
+             $scope.regErrorMessage = error.message;
+         });
+       }
      }
    };
+
+  $scope.logout = function(){
+    CommonProp.logoutUser();
+  }
+  
 }]);

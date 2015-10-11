@@ -67,5 +67,9 @@ angular.module('myApp.welcome', ['ui.router', 'firebase'])
         console.log("Error:", error);
     });
   }
+  
+  $scope.logout = function(){
+    CommonProp.logoutUser();
+  }
 
 }]);

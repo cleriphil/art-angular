@@ -7,7 +7,11 @@ angular.module('myApp', [
   'myApp.welcome',
   'myApp.addAuction',
   'firebase'
-]);
+])
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise("/welcome");
+});
 
 
 // add otherwise route?
