@@ -5839,23 +5839,25 @@ footer {
     footer li a {
       color: #fff; }
 
-.navbar-default {
+header .navbar {
+  border-bottom: 1px solid #999; }
+
+.navbar-custom {
   height: 80px;
   background-color: #fff;
   /*max-width: $max-width;*/
   margin: 0 auto; }
-  .navbar-default .navbar-brand {
+  .navbar-custom .navbar-brand {
     position: relative;
     top: 20px;
     z-index: 15; }
-  .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    border: none;
+  .navbar-custom .navbar-toggle, .navbar-custom .navbar-toggle:hover, .navbar-custom .navbar-toggle:focus {
     background-color: white;
     cursor: pointer; }
-  .navbar-default .navbar-toggle, .navbar-default .navbar-collapse {
+  .navbar-custom .navbar-toggle, .navbar-custom .navbar-collapse {
     position: relative;
     top: 29px; }
-  .navbar-default .navbar-nav > li > a {
+  .navbar-custom .navbar-nav > li > a {
     color: #000;
     z-index: 6;
     font-size: 12px; }
