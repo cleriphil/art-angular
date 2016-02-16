@@ -20,8 +20,8 @@ angular.module('myApp.addAuction', ['ui.router', 'firebase'])
   $scope.addAuction = function() {
     var title = $scope.auction.title;
     var description = $scope.auction.description;
-    var startDate = $scope.auction.startDate.toString();
-    var endDate = $scope.auction.endDate.toString();
+    var startDate = $scope.auction.startDate.getTime();
+    var endDate = $scope.auction.endDate.getTime();
     var emailId = CommonProp.getUser();
     var ref = new Firebase("https://art-app.firebaseio.com");
     var auctionsRef = ref.child("auctions");

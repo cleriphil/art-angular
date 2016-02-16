@@ -16,6 +16,7 @@ angular.module('myApp.welcome', ['ui.router', 'firebase'])
   $scope.auctions = $firebaseArray(ref);
 
 
+
   $scope.editAuction = function(id) {
     var ref = new Firebase("https://art-app.firebaseio.com/auctions/" + id);
     $scope.auctionToUpdate = $firebaseObject(ref);
@@ -67,7 +68,7 @@ angular.module('myApp.welcome', ['ui.router', 'firebase'])
         console.log("Error:", error);
     });
   }
-  
+
   $scope.logout = function(){
     CommonProp.logoutUser();
   }
